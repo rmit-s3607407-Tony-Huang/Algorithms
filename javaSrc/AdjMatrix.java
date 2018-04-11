@@ -121,7 +121,6 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 				tar=i;
 			}
 		}
-		System.out.printf("s=%d t=%d\n",src,tar);
 		adjMatrixGraph.get(tar).set(src,0);
 		adjMatrixGraph.get(src).set(tar,0);
         // Implement me!
@@ -133,7 +132,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		for(int i=0;i<adjMatrixVertex.size();i++){
 			//System.out.print(" "+adjMatrixVertex.get(i));
 			os.print(adjMatrixVertex.get(i) + " ");
-			os.flush();
+			/* os.flush(); */
 		}
 
         // Implement me!
@@ -145,10 +144,6 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 			for(int j=0;j<adjMatrixGraph.get(i).size();j++){
 				if(adjMatrixGraph.get(i).get(j).equals(1)){
 					os.println(adjMatrixVertex.get(i) + " " + adjMatrixVertex.get(j));
-/* 					
-					System.out.print(adjMatrixVertex.get(i));
-					System.out.print("");
-					System.out.println(adjMatrixVertex.get(j)); */
 				}
 			}
 		}
@@ -157,46 +152,40 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     
     
     public int shortestPathDistance(T vertLabel1, T vertLabel2) {
-    	int count=1;
-    	int src=0;
 		
-		ArrayList<ArrayList<T>> neighbourList = new ArrayList<ArrayList<T>>();
-		ArrayList<T> temp= new ArrayList<T>();
-
-		temp.add(vertLabel1);
-		neighbourList.add(temp);
-		neighbourList.add(neighbours(vertLabel1));
+		ArrayList<Integer> visited= new ArrayList<Integer>();
+		Queue<T> vertexQueue= new LinkedList<T>();
+		Queue<Integer> distanceQueue= new LinkedList<Integer>();
 		
-/* 		do{
-			
-			ArrayList<T> temp1= new ArrayList<T>();
-			int i=0;
-			if(neighbourList.get(count).get(i).equals(vertLabel2)){
-				return count;
-			}
-			temp1.add(neighbours(neighbourList.get(count).get(i));
-			i++;
-			
-		}while(neighbourList.get(count).size());
+		T vertex;
+		int distance;
 		
-		neighbourList.addAll(temp1);		
-		
-		//for(int i=0; i<neighbourList.get(count).size();i++){
-			if (neighbourList.get(count).get(i).equals(vertLabel2)){
-				return count;
-			}
-			else{
-				
-			}
-		//} */
-    	
-		for(int i=0; i<neighbourList.size();i++){
-			for(int j=0; j<neighbourList.get(i).size();j++){
-				System.out.print(neighbourList.get(i).get(j));
-			}
-			System.out.print("\n");
+		for(int i=0;i<adjMatrixVertex.size();i++){
+			visited.add(0);
 		}
-        // if we reach this point, source and target are disconnected
+		vertexQueue.add(vertLabel1);
+		distanceQueue.add(0);
+		
+/* 		while(vertexQueue.peek() != null){
+			vertex=vertexQueue.remove();
+			distance=distanceQueue.remove();
+			
+			if(vertex.equals(vertLabel2)){
+				return distance;
+			}
+			for(int i=0;i<adjMatrixVertex.size();i++){
+				if(adjMatrixVertex.get(i).equals(vertex)){
+					visited.set(i,1);
+					if(visited.get(i)==1){
+						vertexQueue.add(adjMatrixVertex.get(i));
+						distanceQueue.add(distance+1);
+					}
+				}
+			}
+		} */
+
+		
+		
         return disconnectedDist;    
 		
     } // end of shortestPathDistance()
