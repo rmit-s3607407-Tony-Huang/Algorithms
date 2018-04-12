@@ -120,37 +120,127 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 			}
 		}
 		
-		for (int i = 0; i < neighbours.size(); i++){
+/*		for (int i = 0; i < neighbours.size(); i++){
 			System.out.print(neighbours.get(i));
-			System.out.printf("%d", i);
-		}
+		}*/
         // Implement me!
         
         return neighbours;
     } // end of neighbours()
     
     public void removeVertex(T vertLabel) {
-        // Implement me!
+        int line = 0;
+		ArrayList<Integer> lines = new ArrayList<Integer>();
+		
+		for (int i = 0; i < indMatrixVertex.size(); i++){
+			if (indMatrixVertex.get(i).equals(vertLabel)){
+				line = i;
+				break;
+			}
+		}
+		
+		for (int i = 0; i < indMatrixEdge.size(); i++){
+			if (indMatrixEdge.get(i).get(0).equals(vertLabel) || indMatrixEdge.get(i).get(1).equals(vertLabel)){
+				lines.add(i);
+			}
+		}
+		
+		for (int i = 0; i < lines.size(); i++){
+			indMatrixEdge.remove(i);
+		}
+		
+/*		for (int i = 0; i < indMatrixEdge.size(); i++){
+			for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				System.out.print(indMatrixEdge.get(i).get(j));
+			}
+			System.out.print("\n");
+		}*/
+		
+		for (int i = 0; i < lines.size(); i++){
+			System.out.print(lines.get(i));
+			System.out.print("\n");
+		}
+		
+		for (int k = 0; k < lines.size(); k++){
+			for (int i = 0; i < indMatrixGraph.size(); i++){
+				indMatrixGraph.get(i).remove(lines.get(k));
+			}
+		}
+		
+		for(int i=0; i<indMatrixGraph.size();i++){
+			for(int j=0; j<indMatrixGraph.get(i).size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			}
+			System.out.print("\n");
+		}
+		
+		indMatrixGraph.remove(line);
+		indMatrixVertex.remove(line);
+/*		for(int i = 0; i < indMatrixVertex.size(); i++){
+			System.out.print(indMatrixVertex.get(i));
+		}*/
+		
+		// Implement me!
     } // end of removeVertex()
 	
     
     public void removeEdge(T srcLabel, T tarLabel) {
-        // Implement me!
+		int line = 0;
+		
+		for (int i = 0; i < indMatrixEdge.size(); i++){
+			if (indMatrixEdge.get(i).equals(srcLabel)){
+				for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
+					if (indMatrixEdge.get(i).get(j).equals(tarLabel)){
+						indMatrixEdge.remove(i);
+						line = i;
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < indMatrixGraph.size(); i++){
+			indMatrixGraph.get(i).remove(line);
+		}
+		
+/* 		for(int i=0; i<indMatrixGraph.size();i++){
+			for(int j=0; j<indMatrixGraph.get(i).size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			}
+			System.out.print("\n");
+		}*/
+		
+		// Implement me!
     } // end of removeEdges()
 	
     
     public void printVertices(PrintWriter os) {
-        // Implement me!
+        
+		for (int i = 0; i < indMatrixVertex.size(); i++){
+			os.printf(indMatrixVertex.get(i) + " ");
+			os.flush();
+		}
+		
+		// Implement me!
     } // end of printVertices()
 	
     
     public void printEdges(PrintWriter os) {
-        // Implement me!
+        
+		for(int i = 0; i < indMatrixEdge.size(); i++){
+			for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				os.println(indMatrixEdge.get(i).get(j));
+			}
+		}
+		
+		// Implement me!
     } // end of printEdges()
     
     
     public int shortestPathDistance(T vertLabel1, T vertLabel2) {
-    	// Implement me!
+    	
+		
+		
+		// Implement me!
     	
         // if we reach this point, source and target are disconnected
         return disconnectedDist;    	
