@@ -130,7 +130,6 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     
     public void removeVertex(T vertLabel) {
         int line = 0;
-		ArrayList<Integer> lines = new ArrayList<Integer>();
 		
 		for (int i = 0; i < indMatrixVertex.size(); i++){
 			if (indMatrixVertex.get(i).equals(vertLabel)){
@@ -141,12 +140,11 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		for (int i = 0; i < indMatrixEdge.size(); i++){
 			if (indMatrixEdge.get(i).get(0).equals(vertLabel) || indMatrixEdge.get(i).get(1).equals(vertLabel)){
-				lines.add(i);
+				for (int j = 0; j < indMatrixGraph.size(); j++){
+					indMatrixGraph.get(j).remove(i);
+				}
+				indMatrixEdge.remove(i);
 			}
-		}
-		
-		for (int i = 0; i < lines.size(); i++){
-			indMatrixEdge.remove(i);
 		}
 		
 /*		for (int i = 0; i < indMatrixEdge.size(); i++){
@@ -156,15 +154,11 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 			System.out.print("\n");
 		}*/
 		
-		for (int i = 0; i < lines.size(); i++){
-			System.out.print(lines.get(i));
-			System.out.print("\n");
-		}
+		indMatrixGraph.remove(line);
+		indMatrixVertex.remove(line);
 		
-		for (int k = 0; k < lines.size(); k++){
-			for (int i = 0; i < indMatrixGraph.size(); i++){
-				indMatrixGraph.get(i).remove(lines.get(k));
-			}
+/*		for(int i = 0; i < indMatrixVertex.size(); i++){
+			System.out.print(indMatrixVertex.get(i));
 		}
 		
 		for(int i=0; i<indMatrixGraph.size();i++){
@@ -172,14 +166,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 				System.out.print(indMatrixGraph.get(i).get(j));
 			}
 			System.out.print("\n");
-		}
-		
-		indMatrixGraph.remove(line);
-		indMatrixVertex.remove(line);
-/*		for(int i = 0; i < indMatrixVertex.size(); i++){
-			System.out.print(indMatrixVertex.get(i));
 		}*/
-		
 		// Implement me!
     } // end of removeVertex()
 	
@@ -238,6 +225,50 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     
     public int shortestPathDistance(T vertLabel1, T vertLabel2) {
     	
+		boolean[] marked = new boolean[indMatrixVertex.size()];
+		Queue<T> vertexQueue = new LinkedList<T>();
+		Queue<Integer> distanceQueue = new LinkedList<Integer>();
+		int dist;
+		T vert;
+		T temp;
+		
+		for (int i = 0; i < indMatrixVertex.size(); i++){
+			marked[i] = false;
+		}
+		
+		vertexQueue.add(vertLabel1);
+		distanceQueue.add(0);
+		
+		while(vertexQueue.peek() != null){
+			vert = vertexQueue.remove();
+			dist = distanceQueue.remove();
+			
+			if (vert.equals(vertLabel2)){
+				System.out.print(dist);
+				return dist;
+			}
+			
+			marked[indMatrixVertex.indexOf(vert)] = true;
+			
+			for(int i = 0; i < indMatrixEdge.size(); i++){
+				for(int j = 0; j < indMatrixEdge.get(i).size(); j++){
+					if(indMatrixEdge.get(i).get(j).equals(vert)){
+						if(j == 0){
+							if(!marked[indMatrixVertex.indexOf(indMatrixEdge.get(i).get(j+1))]){
+								vertexQueue.add(indMatrixEdge.get(i).get(j+1));
+								distanceQueue.add(dist + 1);
+							}
+						}
+						else {
+							if(!marked[indMatrixVertex.indexOf(indMatrixEdge.get(i).get(j-1))]){
+								vertexQueue.add(indMatrixEdge.get(i).get(j-1));
+								distanceQueue.add(dist + 1);
+							}
+						}
+					}
+				}
+			}
+		}
 		
 		
 		// Implement me!
@@ -247,5 +278,4 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     } // end of shortestPathDistance()
     
 } // end of class IndMatrix
-
 
