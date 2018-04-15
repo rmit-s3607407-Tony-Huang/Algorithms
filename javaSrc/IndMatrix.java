@@ -40,7 +40,6 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		}	
 		
 		indMatrixVertex.add(vertLabel);
-		indMatrixGraph.add(new ArrayList<Integer>());
 		
 
 /*		for(int i = 0; i < indMatrixGraph.size();i++){
@@ -244,7 +243,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 			dist = distanceQueue.remove();
 			
 			if (vert.equals(vertLabel2)){
-				System.out.print(dist);
+				// System.out.print(dist);
 				return dist;
 			}
 			
