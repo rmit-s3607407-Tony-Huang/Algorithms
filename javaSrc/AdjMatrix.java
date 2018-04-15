@@ -23,7 +23,17 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     	// Implement me!
     } // end of AdjMatrix()
     
-    
+    public void printGraph(){
+		for(int i=0;i<adjMatrixVertex.size();i++){
+			for(int j=0;j<adjMatrixVertex.size();j++){
+				System.out.print(adjMatrixGraph.get(i).get(j));
+			
+			}
+			System.out.println();
+		}
+			System.out.println();
+	}
+	
     public void addVertex(T vertLabel) {
 		ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
 
@@ -37,7 +47,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		for(int i=0; i<adjMatrixGraph.size();i++){
 			adjMatrixGraph.get(i).add(0);
 		}
-
+		printGraph();
         // Implement me!
     } // end of addVertex()
 	
@@ -57,7 +67,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		/* System.out.printf("s=%d t=%d\n",src,tar); */
 		adjMatrixGraph.get(tar).set(src,1);
 		adjMatrixGraph.get(src).set(tar,1);
-		
+		printGraph();
 /* 		for(int i=0; i<adjMatrixGraph.size();i++){
 			for(int j=0; j<adjMatrixGraph.get(i).size();j++){
 				System.out.print(adjMatrixGraph.get(i).get(j));
