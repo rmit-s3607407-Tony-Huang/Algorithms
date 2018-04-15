@@ -27,6 +27,16 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		// Implement me!
     } // end of IndMatrix()
     
+	public void printGraph(){
+		for(int i=0;i<indMatrixVertex.size();i++){
+			for(int j=0;j<indMatrixEdge.size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			
+			}
+			System.out.println();
+		}
+			System.out.println();
+	}
     
     public void addVertex(T vertLabel) {
         
@@ -40,7 +50,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		}	
 		
 		indMatrixVertex.add(vertLabel);
-		
+		printGraph();
 
 /*		for(int i = 0; i < indMatrixGraph.size();i++){
 			for(int j = 0; j < indMatrixGraph.get(i).size();j++){
@@ -81,7 +91,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		
 		
-		System.out.printf("s=%d t=%d\n",src,tar);
+		printGraph();
 		
 /*		for(int i=0; i<indMatrixGraph.size();i++){
 			for(int j=0; j<indMatrixGraph.get(i).size();j++){
