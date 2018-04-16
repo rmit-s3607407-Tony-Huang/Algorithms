@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.lang.Math.*;
 
 
 /**
@@ -15,7 +16,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 	protected final ArrayList<ArrayList<Integer>> indMatrixGraph;
 	protected final ArrayList<T> indMatrixVertex;
 	protected final ArrayList<ArrayList<T>> indMatrixEdge;
-	public long systemStartTime = System.nanoTime();
+	
 	
 	/**
 	 * Contructs empty graph.
@@ -28,52 +29,58 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		// Implement me!
     } // end of IndMatrix()
     
+	public void printGraph(){
+		for(int i=0;i<indMatrixVertex.size();i++){
+			for(int j=0;j<indMatrixEdge.size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			
+			}
+			System.out.println();
+		}
+			System.out.println();
+	}
     
     public void addVertex(T vertLabel) {
-		long addVertexStart = System.nanoTime();
-        
+        long addVertexStart = System.nanoTime();
 		ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
 
-		if(indMatrixEdge.size() > 0){
-			for(int i = 0; i < indMatrixEdge.size(); i++){
-				tempArrayList.add(0);
-			}
-			indMatrixGraph.add(tempArrayList);
-		}	
+		
+		for(int i = 0; i < indMatrixEdge.size(); i++){
+			tempArrayList.add(0);
+		}
+		indMatrixGraph.add(tempArrayList);
 		
 		indMatrixVertex.add(vertLabel);
-
-		long addVertexTime = System.nanoTime();
-		double totalVertexTime = ((double) (addVertexTime-addVertexStart)) / Math.pow(10,9);
-		System.out.print("vertices " + indMatrixVertex.size());
-		System.out.println(" time taken:" + totalVertexTime);
 		
+/*		for(int i = 0; i < indMatrixGraph.size();i++){
+			for(int j = 0; j < indMatrixGraph.get(i).size();j++){
+				System.out.println(indMatrixGraph.get(i).get(j));
+			}
+			System.out.print("\n");
+		}*/
+		
+		long addVertexEnd = System.nanoTime();
+		double totalVertexTime = ((double) (addVertexEnd - addVertexStart))/Math.pow(10, 9);
+		System.out.println("Vertex " + indMatrixVertex.size() + " -Time taken: " + totalVertexTime);
 		// Implement me!
     } // end of addVertex()
 	
     
     public void addEdge(T srcLabel, T tarLabel) {
-        int src = 0;
-		int tar = 0;
 		long addEdgeStart = System.nanoTime();
 		ArrayList<T> tempList = new ArrayList<T>();
-		tempList.add(srcLabel);
-		tempList.add(tarLabel);
-		indMatrixEdge.add(tempList);
 		
-		for(int i = 0; i < indMatrixGraph.size(); i++){
+		indMatrixGraph.add(new ArrayList<Integer>());
+		
+		for(int i = 0; i < indMatrixVertex.size(); i++){
 			if(indMatrixVertex.get(i).equals(srcLabel)){
-				src = i;
 				
-			}
-			if(indMatrixVertex.get(i).equals(tarLabel)){
-				tar = i;
-			}
-		}
-		
-		for(int i = 0; i < indMatrixGraph.size(); i++){
-			if(i == src || i == tar){
 				indMatrixGraph.get(i).add(1);
+				tempList.add(srcLabel);
+			}
+			else if(indMatrixVertex.get(i).equals(tarLabel)){
+				indMatrixGraph.get(i).add(1);
+				tempList.add(tarLabel);
 			}
 			else{
 				indMatrixGraph.get(i).add(0);
@@ -81,20 +88,35 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		}
 		
 		
-		long addEdgeTime = System.nanoTime();
-		double totalEdgeTime = ((double) (addEdgeTime-addEdgeStart)) / Math.pow(10,9);
-		System.out.print("vertices "+ indMatrixVertex.size() + " edges " + indMatrixEdge.size());
-		System.out.println(" time taken:" + totalEdgeTime);
+		indMatrixEdge.add(tempList);
+		
+/*		for(int i=0; i<indMatrixGraph.size();i++){
+			for(int j=0; j<indMatrixGraph.get(i).size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			}
+			System.out.print("\n");
+		}
+		
+		for(int i = 0; i < indMatrixEdge.size(); i++){
+			for(int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				System.out.print(indMatrixEdge.get(i).get(j));
+			}
+			System.out.println();
+		}*/
+		
+		long addEdgeEnd = System.nanoTime();
+		double totalEdgeTime = ((double) (addEdgeEnd - addEdgeStart)) / Math.pow(10, 9);
+		System.out.println("Edges " + indMatrixEdge.size() + " -Time taken: " + totalEdgeTime);
 		
 		// Implement me!
     } // end of addEdge()
 	
 
     public ArrayList<T> neighbours(T vertLabel) {
-        ArrayList<T> neighbours = new ArrayList<T>();
 		long findNeighbourStart = System.nanoTime();
+        ArrayList<T> neighbours = new ArrayList<T>();
 
-		for (int i = 0; i < indMatrixGraph.size(); i++){
+		for (int i = 0; i < indMatrixVertex.size(); i++){
 			if (indMatrixVertex.get(i).equals(vertLabel)){
 				for (int j = 0; j < indMatrixGraph.get(i).size(); j++){
 					if(indMatrixGraph.get(i).get(j) == 1){
@@ -111,17 +133,22 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 			}
 		}
 		
-		double findNeightbourEnd = System.nanoTime();
-		double totalNeighbourTime = ((double) (findNeightbourEnd-findNeighbourStart)) / Math.pow(10,9);
-		System.out.println("find neighbour time taken:" + totalNeighbourTime);
+/*		for (int i = 0; i < neighbours.size(); i++){
+			System.out.print(neighbours.get(i));
+		}*/
         // Implement me!
+		
+		long findNeighbourEnd = System.nanoTime();
+		double totalNeighbourTime = ((double) (findNeighbourEnd - findNeighbourStart)) / Math.pow(10, 9);
+		System.out.println("Find neighbour time takens: " + totalNeighbourTime);
         
         return neighbours;
     } // end of neighbours()
     
     public void removeVertex(T vertLabel) {
-        int line = 0;
+		
 		long removeVertexStart = System.nanoTime();
+        int line = 0;
 		
 		for (int i = 0; i < indMatrixVertex.size(); i++){
 			if (indMatrixVertex.get(i).equals(vertLabel)){
@@ -132,47 +159,83 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		for (int i = 0; i < indMatrixEdge.size(); i++){
 			if (indMatrixEdge.get(i).get(0).equals(vertLabel) || indMatrixEdge.get(i).get(1).equals(vertLabel)){
-				for (int j = 0; j < indMatrixGraph.size(); j++){
+				for (int j = 0; j < indMatrixVertex.size(); j++){
 					indMatrixGraph.get(j).remove(i);
 				}
 				indMatrixEdge.remove(i);
 			}
 		}
 		
+/*		for (int i = 0; i < indMatrixEdge.size(); i++){
+			for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				System.out.print(indMatrixEdge.get(i).get(j));
+			}
+			System.out.print("\n");
+		}*/
 		
 		indMatrixGraph.remove(line);
 		indMatrixVertex.remove(line);
 		
+/*		for(int i = 0; i < indMatrixVertex.size(); i++){
+			System.out.print(indMatrixVertex.get(i));
+		
+		
+		for(int i=0; i<indMatrixGraph.size();i++){
+			for(int j=0; j<indMatrixGraph.get(i).size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			}
+			System.out.print("\n");
+		}}*/
+		
 		long removeVertexEnd = System.nanoTime();
-		double totalRemoveVertexTime = ((double)(removeVertexEnd-removeVertexStart)) / Math.pow(10,9);
+		double totalRemoveVertexTime = ((double) (removeVertexEnd - removeVertexStart)) / Math.pow(10, 9);
+		System.out.println("Vertex " + indMatrixVertex.size() + " Edges " + indMatrixEdge.size() + " -Total remove Vertex Time taken: " + totalRemoveVertexTime);
+		
 		// Implement me!
     } // end of removeVertex()
 	
     
     public void removeEdge(T srcLabel, T tarLabel) {
-		int line = 0;
 		long removeEdgeStart = System.nanoTime();
+		int line = 0;
 		
 		for (int i = 0; i < indMatrixEdge.size(); i++){
 			if (indMatrixEdge.get(i).equals(srcLabel)){
 				for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
 					if (indMatrixEdge.get(i).get(j).equals(tarLabel)){
-						indMatrixEdge.remove(i);
+						
 						line = i;
 					}
 				}
 			}
 		}
 		
-		for (int i = 0; i < indMatrixGraph.size(); i++){
+		indMatrixEdge.remove(line);
+		
+		for (int i = 0; i < indMatrixVertex.size(); i++){
 			indMatrixGraph.get(i).remove(line);
 		}
 		
-		long removeEdgeEnd=System.nanoTime();
-		double totalRemoveEdgeTime=((double)(removeEdgeEnd-removeEdgeStart))/Math.pow(10,9);
+/*		for (int i = 0; i < indMatrixEdge.size(); i++){
+			for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				System.out.print(indMatrixEdge.get(i).get(j));
+			}
+			System.out.print("\n");
+		}
+		
+ 		for(int i=0; i<indMatrixGraph.size();i++){
+			for(int j=0; j<indMatrixGraph.get(i).size();j++){
+				System.out.print(indMatrixGraph.get(i).get(j));
+			}
+			System.out.print("\n");
+		}*/
+		
+		long removeEdgeEnd = System.nanoTime();
+		double totalRemoveEdgeTime = ((double) (removeEdgeEnd - removeEdgeStart)) / Math.pow(10, 9);
+		System.out.println("Vertex " + indMatrixVertex.size() + " Edges " + indMatrixEdge.size() + " -Total Remove Edge Time Taken: " + totalRemoveEdgeTime);
 		
 		// Implement me!
-    } // end of removeEdges()
+    } // end of removeEdge()
 	
     
     public void printVertices(PrintWriter os) {
@@ -189,17 +252,25 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     public void printEdges(PrintWriter os) {
         
 		for(int i = 0; i < indMatrixEdge.size(); i++){
-			for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
-				os.println(indMatrixEdge.get(i).get(j));
+			for(int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				os.print(indMatrixEdge.get(i).get(j) +" ");
 			}
+			os.println();
 		}
+		
+/*		for (int i = 0; i < indMatrixEdge.size(); i++){
+			for (int j = 0; j < indMatrixEdge.get(i).size(); j++){
+				System.out.print(indMatrixEdge.get(i).get(j));
+			}
+			System.out.print("\n");
+		}*/
 		
 		// Implement me!
     } // end of printEdges()
     
     
     public int shortestPathDistance(T vertLabel1, T vertLabel2) {
-    	
+    	long SPDStart = System.nanoTime();
 		boolean[] marked = new boolean[indMatrixVertex.size()];
 		Queue<T> vertexQueue = new LinkedList<T>();
 		Queue<Integer> distanceQueue = new LinkedList<Integer>();
@@ -245,6 +316,9 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 			}
 		}
 		
+		long SPDEnd = System.nanoTime();
+		double totalSPDTime = ((double) (SPDEnd - SPDStart)) / Math.pow(10, 9);
+		System.out.println("Find Shortest Path Distance Time taken: " + totalSPDTime);
 		
 		// Implement me!
     	
