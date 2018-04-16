@@ -56,9 +56,8 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		double totalVertexTime = ((double) (addVertexTime-addVertexStart))/ Math.pow(10,9);
 /* 		System.out.print("Vertices "+adjMatrixVertex.size()+" Edges "+totalEdges);
 		System.out.println(" -Time taken:" + totalVertexTime); */
-		System.out.println(totalVertexTime);
-		//pw.print(totalVertexTime+",");
-		//printGraph();
+		//System.out.println(totalVertexTime);
+		
         // Implement me!
     } // end of addVertex()
 	
@@ -107,7 +106,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		double findNeightbourEnd = System.nanoTime();
 		double totalNeighbourTime = ((double) (findNeightbourEnd-findNeighbourStart))/ Math.pow(10,9);
-		//System.out.println("find neighbour time taken:" + totalNeighbourTime);
+		//System.out.println(totalNeighbourTime);
         // Implement me!
         
         return neighbours;
@@ -132,6 +131,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		double totalRemoveVertexTime=((double)(removeVertexEnd-removeVertexStart))/Math.pow(10,9);
 /* 		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
 		System.out.println(" - totalRemoveVertexTime "+totalRemoveVertexTime); */
+		//System.out.println(totalRemoveVertexTime);
         // Implement me!
     } // end of removeVertex()
 	
@@ -155,6 +155,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		double totalRemoveEdgeTime=((double)(removeEdgeEnd-removeEdgeStart))/Math.pow(10,9);
 /* 		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
 		System.out.println("totalRemoveEdgeTime:" + totalRemoveEdgeTime); */
+		System.out.println(totalRemoveEdgeTime);
         // Implement me!
     } // end of removeEdges()
 	
@@ -206,7 +207,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 			if(vertex.equals(vertLabel2)){
 				long shortestPathDistanceEnd=System.nanoTime();
 				double totalShortestTime=((double)(shortestPathDistanceEnd-shortestPathDistanceStart))/Math.pow(10,9);
-				System.out.println("shortest D time:" + totalShortestTime);
+				//System.out.println(totalShortestTime);
 				
 				return distance;
 			}
@@ -226,7 +227,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
     // if we reach this point, source and target are disconnected
 					long shortestPathDistanceEnd=System.nanoTime();
 				double totalShortestTime=((double)(shortestPathDistanceEnd-shortestPathDistanceStart))/Math.pow(10,9);
-				//System.out.println("shortest D time:" + totalShortestTime);
+				//System.out.println(totalShortestTime);
         return disconnectedDist;    	
 		
     } // end of shortestPathDistance()

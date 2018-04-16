@@ -4,10 +4,11 @@ import java.util.*;
 public class GenerateTest {
 
 	private static final String OUTPUT = "tests/test3.in";
-	private static final int LINES = 1000;
-	private static final int MAX_EDGES = 1000;
-	private static final int NO_NEIGHBOURS = 50;
-	private static final int NO_SHORTEST = 50;
+	private static final int LINES = 500;
+	private static final int MAX_EDGES = 25000;
+	private static final int NO_NEIGHBOURS = 100;
+	private static final int NO_SHORTEST = 100;
+	private static final int NO_REMOVED = 100;
 	private int edge1;
 	private int edge2;
 	
@@ -34,17 +35,20 @@ public class GenerateTest {
 			 }
 /* 			for (int i = NO_NEIGHBOURS; i > 0 ; i--) {
 				pw.println("N " +rand.nextInt(LINES));
-             }
+             } */
 			 
-			for (int i = NO_SHORTEST; i > 0 ; i--) {			 
+/* 			for (int i = NO_SHORTEST; i > 0 ; i--) {			 
 			 	pw.println("S " +rand.nextInt(LINES) + " "+rand.nextInt(LINES));
 			} */
-			
+/* 			for (int i=NO_REMOVED;i>0 ;i--){
+				
+				pw.println("RV "+ rand.nextInt(LINES));
+			} */
+			for (int i=NO_REMOVED;i>0 ;i--){
+				
+				pw.println("RE "+edges[0][i] +" "+edges[1][i]);
+			}
 
-			for (int i = 0; i < LINES; i++) {
-				int temp = i+1000;
-                pw.println("AV " + temp);
-             }
 		pw.close();
       }
 	
