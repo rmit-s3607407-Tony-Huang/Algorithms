@@ -40,7 +40,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 	
     public void addVertex(T vertLabel) {
 		ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
-				long addVertexStart = System.nanoTime();
+		long addVertexStart = System.nanoTime();
 
 		for(int i=0;i<adjMatrixVertex.size();i++){
 			tempArrayList.add(0);

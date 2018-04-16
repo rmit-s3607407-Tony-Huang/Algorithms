@@ -4,9 +4,9 @@ import java.util.*;
 public class GenerateTest {
 
 	private static final String OUTPUT = "tests/test3.in";
-	private static final int LINES = 50;
-	private static final int MAX_EDGES = 100;
-	private static final int NO_NEIGHBOURS = 25;
+	private static final int LINES = 100;
+	private static final int MAX_EDGES = 1000;
+	private static final int NO_NEIGHBOURS = 50;
 	private int edge1;
 	private int edge2;
 	
@@ -33,7 +33,7 @@ public class GenerateTest {
 			 }
 			for (int i = NO_NEIGHBOURS; i > 0 ; i--) {
 				
-                pw.println("RE " + +edges[0][i] + " " + edges[1][i]);
+                //pw.println("RE " + +edges[0][i] + " " + edges[1][i]);
 				pw.println("N " +rand.nextInt(LINES));
 				pw.println("S " +rand.nextInt(LINES) + " "+rand.nextInt(LINES));
 				
