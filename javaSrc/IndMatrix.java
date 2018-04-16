@@ -30,6 +30,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     
     
     public void addVertex(T vertLabel) {
+		long addVertexStart = System.nanoTime();
         
 		ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
 
@@ -43,7 +44,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		indMatrixVertex.add(vertLabel);
 
 		long addVertexTime = System.nanoTime();
-		double totalVertexTime = ((double) (addVertexTime-systemStartTime)) / Math.pow(10,9);
+		double totalVertexTime = ((double) (addVertexTime-addVertexStart)) / Math.pow(10,9);
 		System.out.print("vertices " + indMatrixVertex.size());
 		System.out.println(" time taken:" + totalVertexTime);
 		
@@ -54,6 +55,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
     public void addEdge(T srcLabel, T tarLabel) {
         int src = 0;
 		int tar = 0;
+		long addEdgeStart = System.nanoTime();
 		ArrayList<T> tempList = new ArrayList<T>();
 		tempList.add(srcLabel);
 		tempList.add(tarLabel);
@@ -80,7 +82,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		
 		long addEdgeTime = System.nanoTime();
-		double totalEdgeTime = ((double) (addEdgeTime-systemStartTime)) / Math.pow(10,9);
+		double totalEdgeTime = ((double) (addEdgeTime-addEdgeStart)) / Math.pow(10,9);
 		System.out.print("vertices "+ indMatrixVertex.size() + " edges " + indMatrixEdge.size());
 		System.out.println(" time taken:" + totalEdgeTime);
 		

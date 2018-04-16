@@ -40,6 +40,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 	
     public void addVertex(T vertLabel) {
 		ArrayList<Integer> tempArrayList = new ArrayList<Integer>();
+				long addVertexStart = System.nanoTime();
 
 		for(int i=0;i<adjMatrixVertex.size();i++){
 			tempArrayList.add(0);
@@ -52,16 +53,16 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 			adjMatrixGraph.get(i).add(0);
 		}
 		long addVertexTime = System.nanoTime();
-		double totalVertexTime = ((double) (addVertexTime-systemStartTime))/ Math.pow(10,9);
-		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
-		System.out.println(" time taken:" + totalVertexTime);
+		double totalVertexTime = ((double) (addVertexTime-addVertexStart))/ Math.pow(10,9);
+		System.out.print("Vertices "+adjMatrixVertex.size()+" Edges "+totalEdges);
+		System.out.println(" -Time taken:" + totalVertexTime);
 		//printGraph();
         // Implement me!
     } // end of addVertex()
 	
     
     public void addEdge(T srcLabel, T tarLabel) {
-
+		long addEdgeStart = System.nanoTime();
 		int src = 0;
 		int tar = 0;
 		totalEdges++;
@@ -78,9 +79,9 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		adjMatrixGraph.get(src).set(tar,1);
 		
 		long addEdgeTime = System.nanoTime();
-		double totalEdgeTime = ((double) (addEdgeTime-systemStartTime))/ Math.pow(10,9);
-		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
-		System.out.println(" time taken:" + totalEdgeTime);
+		double totalEdgeTime = ((double) (addEdgeTime-addEdgeStart))/ Math.pow(10,9);
+		System.out.print("Vertices "+adjMatrixVertex.size()+" Edges "+totalEdges);
+		System.out.println(" -Time taken:" + totalEdgeTime);
         // Implement me!
     } // end of addEdge()
 	
@@ -127,13 +128,14 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		long removeVertexEnd=System.nanoTime();
 		double totalRemoveVertexTime=((double)(removeVertexEnd-removeVertexStart))/Math.pow(10,9);
 		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
-		System.out.println("totalRemoveVertexTime "+totalRemoveVertexTime);
+		System.out.println(" - totalRemoveVertexTime "+totalRemoveVertexTime);
         // Implement me!
     } // end of removeVertex()
 	
     
     public void removeEdge(T srcLabel, T tarLabel) {
 		long removeEdgeStart = System.nanoTime();
+		totalEdges--;
 		int src=0;
 		int tar=0;
 		for(int i=0;i<adjMatrixVertex.size();i++){
