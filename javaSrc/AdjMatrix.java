@@ -53,7 +53,7 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		}
 		long addVertexTime = System.nanoTime();
 		double totalVertexTime = ((double) (addVertexTime-systemStartTime))/ Math.pow(10,9);
-		System.out.print("vertices "+adjMatrixVertex.size());
+		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
 		System.out.println(" time taken:" + totalVertexTime);
 		//printGraph();
         // Implement me!
@@ -126,6 +126,8 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		adjMatrixGraph.remove(index);
 		long removeVertexEnd=System.nanoTime();
 		double totalRemoveVertexTime=((double)(removeVertexEnd-removeVertexStart))/Math.pow(10,9);
+		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
+		System.out.println("totalRemoveVertexTime "+totalRemoveVertexTime);
         // Implement me!
     } // end of removeVertex()
 	
@@ -146,6 +148,8 @@ public class AdjMatrix <T extends Object> implements FriendshipGraph<T>
 		adjMatrixGraph.get(src).set(tar,0);
 		long removeEdgeEnd=System.nanoTime();
 		double totalRemoveEdgeTime=((double)(removeEdgeEnd-removeEdgeStart))/Math.pow(10,9);
+		System.out.print("vertices "+adjMatrixVertex.size()+" edges "+totalEdges);
+		System.out.println("totalRemoveEdgeTime:" + totalRemoveEdgeTime);
         // Implement me!
     } // end of removeEdges()
 	
