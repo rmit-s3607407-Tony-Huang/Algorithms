@@ -4,9 +4,10 @@ import java.util.*;
 public class GenerateTest {
 
 	private static final String OUTPUT = "tests/test3.in";
-	private static final int LINES = 100;
+	private static final int LINES = 1000;
 	private static final int MAX_EDGES = 1000;
 	private static final int NO_NEIGHBOURS = 50;
+	private static final int NO_SHORTEST = 50;
 	private int edge1;
 	private int edge2;
 	
@@ -31,15 +32,20 @@ public class GenerateTest {
 				 edges[1][i]=edge2;
 				 pw.println("AE "+edge1 + " " + edge2);
 			 }
-			for (int i = NO_NEIGHBOURS; i > 0 ; i--) {
-				
-                //pw.println("RE " + +edges[0][i] + " " + edges[1][i]);
+/* 			for (int i = NO_NEIGHBOURS; i > 0 ; i--) {
 				pw.println("N " +rand.nextInt(LINES));
-				pw.println("S " +rand.nextInt(LINES) + " "+rand.nextInt(LINES));
-				
              }
 			 
-             pw.close();
+			for (int i = NO_SHORTEST; i > 0 ; i--) {			 
+			 	pw.println("S " +rand.nextInt(LINES) + " "+rand.nextInt(LINES));
+			} */
+			
+
+			for (int i = 0; i < LINES; i++) {
+				int temp = i+1000;
+                pw.println("AV " + temp);
+             }
+		pw.close();
       }
 	
 	public static void main(String[] args) throws FileNotFoundException{
