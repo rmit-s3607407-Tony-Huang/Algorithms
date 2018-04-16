@@ -61,7 +61,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		long addVertexEnd = System.nanoTime();
 		double totalVertexTime = ((double) (addVertexEnd - addVertexStart))/Math.pow(10, 9);
-		System.out.println("Vertex " + indMatrixVertex.size() + " -Time taken: " + totalVertexTime);
+		//System.out.println(totalVertexTime);
 		// Implement me!
     } // end of addVertex()
 	
@@ -106,7 +106,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		long addEdgeEnd = System.nanoTime();
 		double totalEdgeTime = ((double) (addEdgeEnd - addEdgeStart)) / Math.pow(10, 9);
-		System.out.println("Edges " + indMatrixEdge.size() + " -Time taken: " + totalEdgeTime);
+		//System.out.println("Edge " + totalEdgeTime);
 		
 		// Implement me!
     } // end of addEdge()
@@ -140,7 +140,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		long findNeighbourEnd = System.nanoTime();
 		double totalNeighbourTime = ((double) (findNeighbourEnd - findNeighbourStart)) / Math.pow(10, 9);
-		System.out.println("Find neighbour time takens: " + totalNeighbourTime);
+		// System.out.println(totalNeighbourTime);
         
         return neighbours;
     } // end of neighbours()
@@ -189,7 +189,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		long removeVertexEnd = System.nanoTime();
 		double totalRemoveVertexTime = ((double) (removeVertexEnd - removeVertexStart)) / Math.pow(10, 9);
-		System.out.println("Vertex " + indMatrixVertex.size() + " Edges " + indMatrixEdge.size() + " -Total remove Vertex Time taken: " + totalRemoveVertexTime);
+		//System.out.println(totalRemoveVertexTime);
 		
 		// Implement me!
     } // end of removeVertex()
@@ -232,7 +232,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		long removeEdgeEnd = System.nanoTime();
 		double totalRemoveEdgeTime = ((double) (removeEdgeEnd - removeEdgeStart)) / Math.pow(10, 9);
-		System.out.println("Vertex " + indMatrixVertex.size() + " Edges " + indMatrixEdge.size() + " -Total Remove Edge Time Taken: " + totalRemoveEdgeTime);
+		//System.out.println(totalRemoveEdgeTime);
 		
 		// Implement me!
     } // end of removeEdge()
@@ -291,6 +291,9 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 			
 			if (vert.equals(vertLabel2)){
 				// System.out.print(dist);
+				long SPDEnd = System.nanoTime();
+				double totalSPDTime = ((double) (SPDEnd - SPDStart)) / Math.pow(10, 9);
+				//System.out.println(totalSPDTime);
 				return dist;
 			}
 			
@@ -318,7 +321,7 @@ public class IndMatrix <T extends Object> implements FriendshipGraph<T>
 		
 		long SPDEnd = System.nanoTime();
 		double totalSPDTime = ((double) (SPDEnd - SPDStart)) / Math.pow(10, 9);
-		System.out.println("Find Shortest Path Distance Time taken: " + totalSPDTime);
+		//System.out.println(totalSPDTime);
 		
 		// Implement me!
     	
